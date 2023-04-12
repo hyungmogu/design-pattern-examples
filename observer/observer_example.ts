@@ -5,11 +5,11 @@ interface Subscriber {
 class ConcreteSubscriber implements Subscriber {
     public name: string;
 
-    constructor(name) {
+    constructor(name: string) {
         this.name = name;
     }
 
-    update(data: any) {
+    update(data: string) {
         console.log(`${this.name} received data: ${data}`);
     }
 }
@@ -21,15 +21,15 @@ class Observer {
         this.subscribers = [];
     }
 
-    public subscribe(subscriber) {
+    public subscribe(subscriber: Subscriber) {
         this.subscribers.push(subscriber);
     }
 
-    public unsubscribe(subscriber) {
+    public unsubscribe(subscriber: Subscriber) {
         this.subscribers = this.subscribers.filter(s => s !== subscriber);
     }
 
-    public notify(data) {
+    public notify(data: string) {
         this.subscribers.forEach(subscriber => subscriber.update(data));
     }
 }
@@ -47,3 +47,6 @@ class Application {
         observer.notify('Hello World!');
     }
 }
+
+const app = new Application();
+app.main();
