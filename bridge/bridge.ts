@@ -15,9 +15,15 @@ interface OS {
 
 // Concrete Implementation
 class Mac implements OS {
-    keyboard: Keyboard;
+    keyboard!: Keyboard;
     volume: number;
     currentKey: string;
+
+    constructor() {
+        this.volume = 0;
+        this.currentKey = '';
+    }
+
     isConnectable(): boolean {
         console.log('Mac is connectable');
         return true;
@@ -65,9 +71,15 @@ class Mac implements OS {
 }
 
 class Windows implements OS {
-    keyboard: Keyboard;
+    keyboard!: Keyboard;
     volume: number;
     currentKey: string;
+
+    constructor() {
+        this.volume = 0;
+        this.currentKey = '';
+    }
+
     isConnectable(): boolean {
         console.log('Windows is connectable');
         return true;
@@ -168,3 +180,6 @@ class Application {
         windowsKeyboard.pressSideNumKey('1');
     }
 }
+
+const app = new Application();
+app.main();
